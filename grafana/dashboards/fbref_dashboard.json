@@ -1,0 +1,209 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "fbref-pl-metrics",
+    "title": "FBref Premier League Metrics",
+    "timezone": "browser",
+    "schemaVersion": 36,
+    "version": 6,
+    "refresh": "30s",
+    "panels": [
+      {
+        "type": "barchart",
+        "title": "Goals by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_goals_total",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "orange", "value": 10 },
+                { "color": "green", "value": 20 }
+              ]
+            }
+          }
+        },
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 }
+      },
+
+      {
+        "type": "piechart",
+        "title": "Possession % by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_possession_percent",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Shots by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_shots_total",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Shots on Target",
+        "targets": [
+          {
+            "expr": "fbref_team_shots_on_target",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 }
+      },
+
+      {
+        "type": "gauge",
+        "title": "Pass Completion %",
+        "targets": [
+          {
+            "expr": "fbref_team_pass_completion_percent",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 16, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Expected Goals (xG)",
+        "targets": [
+          {
+            "expr": "fbref_team_expected_goals",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 16, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "stat",
+        "title": "Exporter Health",
+        "targets": [
+          {
+            "expr": "up{job=\"fbref-exporter\"}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 22, "w": 6, "h": 4 }
+      },
+
+      {
+        "type": "graph",
+        "title": "Scrape Duration",
+        "targets": [
+          {
+            "expr": "scrape_duration_seconds{job=\"fbref-exporter\"}"
+          }
+        ],
+        "gridPos": { "x": 6, "y": 22, "w": 18, "h": 4 }
+      },
+
+      {
+        "type": "table",
+        "title": "Top 5 Teams by Goals",
+        "targets": [
+          {
+            "expr": "topk(5, fbref_team_goals_total)"
+          }
+        ],
+        "options": {
+          "showHeader": true,
+          "sortBy": [{ "field": "Value", "desc": true }]
+        },
+        "gridPos": { "x": 0, "y": 28, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "table",
+        "title": "Top 5 Teams by xG",
+        "targets": [
+          {
+            "expr": "topk(5, fbref_team_expected_goals)"
+          }
+        ],
+        "options": {
+          "showHeader": true,
+          "sortBy": [{ "field": "Value", "desc": true }]
+        },
+        "gridPos": { "x": 12, "y": 28, "w": 12, "h": 6 }
+      },
+      
+      {
+        "type": "barchart",
+        "title": "Yellow Cards by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_yellow_cards_total",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 34, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Red Cards by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_red_cards_total",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 34, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Progressive Passes by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_progressive_passes",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 40, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Tackles Won by Team",
+        "targets": [
+          {
+            "expr": "fbref_team_tackles_won",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 12, "y": 40, "w": 12, "h": 6 }
+      },
+
+      {
+        "type": "barchart",
+        "title": "Goalkeeper Saves",
+        "targets": [
+          {
+            "expr": "fbref_team_saves_total",
+            "legendFormat": "{{team}}"
+          }
+        ],
+        "gridPos": { "x": 0, "y": 46, "w": 12, "h": 6 }
+      }
+
+    ]
+  }
+}
